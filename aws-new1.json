@@ -1,0 +1,42 @@
+{
+   "resource" : {
+        "devVPC": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+              "CidrBlock": "10.0.0.0/26",
+              "EnableDnsSupport": "true",
+              "EnableDnsHostnames": "true",
+              "InstanceTenancy": "default",
+              "Tags": [{ "Key": "stack", "Value": "dev" }]
+            }
+          },
+          "devPublicSubnet" : {
+            "Type" : "AWS::EC2::Subnet",
+               "Properties" : {
+                  "AvailabilityZone" : "us-east-1a",
+                  "CidrBlock" : "10.0.0.0/27",
+                  "MapPublicIpOnLaunch" : true,
+                  "VpcId" : "vpc-032ceecd4e22bd1f9",
+                  "Tags" : [ {"Key" : "name", "Value" : "dev-public-subnet"}]
+            }
+         },
+         "devPrivateSubnet" : {
+            "Type" : "AWS::EC2::Subnet",
+            "Properties" : {
+               "AvailabilityZone" : "us-east-1a",
+               "CidrBlock" : "10.0.0.32/27",
+               "MapPublicIpOnLaunch" : true,
+               "VpcId" : "vpc-032ceecd4e22bd1f9",
+               "Tags" : [ {"Key" : "name", "Value" : "dev-private-subnet"}]
+            }
+         },
+         "devIGW" : {
+            "Type" : "AWS::EC2::InternetGateway",
+            "Properties" : {
+               "Tags" : [ {"Key" : "stack", "Value" : "dev"}]
+            }
+        
+    }
+
+}
+}
